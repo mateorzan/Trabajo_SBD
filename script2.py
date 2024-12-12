@@ -1,44 +1,66 @@
 import pymongo
 import pandas as pd
 
-# Configuración da conexión á base de datos MongoDB
+# Configuración de la conexión a MongoDB
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["bicicoruña"]
 collection = db["Estaciones"]
 
-# Función para ler os datos de MongoDB
-def ler_datos_mongodb():
+# Función para leer los datos de MongoDB
+def leer_datos_mongodb():
     documentos = collection.find()
     return documentos
 
-# Función para exportar os datos a CSV e Parquet
-def exportar_datos(datos):
-    # Crear un DataFrame de pandas cos datos
+# Función para limpiar y transformar los datos
+def procesar_datos(datos):
+    # Crear un DataFrame con los datos
     df = pd.DataFrame(datos)
     
-    # Filtrar os campos que se desexan exportar
-    campos_desejados = ["_id", "name", "timestamp", "free_bikes", "empty_slots", "uid", "last_updated", "slots", "normal_bikes", "ebikes"]
-    df_filtrado = df[campos_desejados]
+    # Extraer los campos de "extra" para cada fila
+    if "extra" in df.columns:
+        extra_df = df["extra"].apply(pd.Series)  # Esto crea un DataFrame de los campos de "extra"
+        df = pd.concat([df, extra_df], axis=1)  # Concatenar los campos de "extra" al DataFrame principal
     
+    # Campos deseados
+    campos_deseados = [
+        "id", "name", "timestamp", 
+        "free_bikes", "empty_slots", "uid", "last_updated", "slots", "normal_bikes", 
+        "ebikes"
+    ]
+    
+    # Filtrar el DataFrame para mantener solo los campos deseados
+    df = df[campos_deseados]
+    
+    # Convertir el campo "timestamp" a un formato compatible
+    if "timestamp" in df.columns:
+        df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
+    
+    return df
+
+# Función para exportar los datos a CSV y Parquet
+def exportar_datos(df):
     # Exportar a CSV
-    df_filtrado.to_csv("datos_exportados.csv", index=False)
+    df.to_csv("datos_exportados.csv", index=False)
     print("Datos exportados a CSV.")
     
     # Exportar a Parquet
-    df_filtrado.to_parquet("datos_exportados.parquet", index=False)
+    df.to_parquet("datos_exportados.parquet", index=False)
     print("Datos exportados a Parquet.")
 
-# Función principal para executar o script
+# Función principal
 def ejecutar_script():
-    # Ler os datos de MongoDB
-    documentos = ler_datos_mongodb()
+    # Leer los datos de MongoDB
+    documentos = leer_datos_mongodb()
     
-    # Convertir os documentos a lista de diccionarios
+    # Convertir los documentos a una lista de diccionarios
     datos = list(documentos)
     
-    # Exportar os datos
-    exportar_datos(datos)
+    # Procesar y limpiar los datos
+    df = procesar_datos(datos)
+    
+    # Exportar los datos
+    exportar_datos(df)
 
-# Executar o script
-if __name__ == "__main__":
-    ejecutar_script()  # Executa cando se chame o script
+# Ejecutar el script
+ejecutar_script()
+

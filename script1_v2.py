@@ -1,20 +1,21 @@
 import requests
 import pymongo
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Configuración da conexión á base de datos MongoDB
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["api_data_db"]
-collection = db["data_collection"]
+db = client["bicicoruña"]
+collection = db["Estaciones"]
 
 # Función para obter datos da API
 def obtener_datos_api():
-    url = "URL_DE_LA_API"  # Substitúe por a URL real da API
+    url = "http://api.citybik.es/v2/networks/bicicorunha"  # Substitúe por a URL real da API
     response = requests.get(url)
     if response.status_code == 200:
         try:
-            return response.json()  # Retorna os datos en formato JSON
+            datos = response.json()
+            return datos['network']['stations'] # Retorna os datos en formato JSON
         except ValueError:
             print("Erro ao parsear os datos JSON.")
             return None
@@ -28,7 +29,7 @@ def almacenar_datos_mongodb(datos):
         if isinstance(datos, list):  # Comproba se os datos son unha lista
             for dato in datos:
                 if isinstance(dato, dict):  # Comproba se cada item é un diccionario
-                    dato['timestamp'] = datetime.utcnow()  # Asigna o timestamp
+                    dato['timestamp'] = datetime.now(timezone.utc) # Asigna o timestamp
                     collection.insert_one(dato)
             print("Datos almacenados correctamente.")
         else:
