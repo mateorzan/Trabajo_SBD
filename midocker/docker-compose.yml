@@ -21,6 +21,7 @@ services:
     restart: always
     networks:
       - Trabajo_SBD
+    command: ["sh", "-c", "python script1_v3.py && tail -f /dev/null"]
 
 networks:
   Trabajo_SBD:
