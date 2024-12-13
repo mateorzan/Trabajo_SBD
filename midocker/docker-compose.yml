@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - Trabajo_SBD
+    volumes:
+      - mongo-data:/data/db
+
+  api-script:
+    build: .
+    container_name: api-script
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
+    restart: always
+    networks:
+      - Trabajo_SBD
+
+networks:
+  Trabajo_SBD:
+    driver: bridge
+
+volumes:
+  mongo-data:
