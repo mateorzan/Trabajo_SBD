@@ -42,12 +42,11 @@ Clona el repositorio localmente con:
 ```bash
 git clone https://github.com/tu_usuario/mateorzan.git
 cd mateorzan
-
+```
 
 ### 3. Configura y ejecuta Docker
 
 ```bash
 cd midocker
 docker-compose up --build
-
-
+```
