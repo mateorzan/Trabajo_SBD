@@ -22,7 +22,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 ├── README.md                   # Documentación principal del proyecto
 ├── notebook1.ipynb             # Notebook 1 de análisis o procesamiento
 └── notebook2.ipynb             # Notebook 2 de análisis adicional
-
+```
 
 ## 🚀 Instalación y Configuración
 
