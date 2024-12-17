@@ -3,8 +3,8 @@ import pandas as pd
 
 # Configuración de la conexión a MongoDB
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["bicicoruña"]
-collection = db["Estaciones"]
+db = client["NBA"]
+collection = db["partidos"]
 
 # Función para leer los datos de MongoDB
 def leer_datos_mongodb():
@@ -15,25 +15,14 @@ def leer_datos_mongodb():
 def procesar_datos(datos):
     # Crear un DataFrame con los datos
     df = pd.DataFrame(datos)
+    print("Dataframe")
 
-    # Extraer los campos de "extra" para cada fila
-    if "extra" in df.columns:
-        extra_df = df["extra"].apply(pd.Series)  # Esto crea un DataFrame de los campos de "extra"
-        df = pd.concat([df, extra_df], axis=1)  # Concatenar los campos de "extra" al DataFrame principal
+    # Lista de columnas que no deseas
+    columnas_a_excluir = ["_id"]
 
-    # Campos deseados
-    campos_deseados = [
-        "id", "name", "timestamp", 
-        "free_bikes", "empty_slots", "uid", "last_updated", "slots", "normal_bikes", 
-        "ebikes"
-    ]
+    # Filtrar el DataFrame excluyendo las columnas no deseadas
+    df = df.drop(columns=columnas_a_excluir, errors='ignore')  # 'errors="ignore"' evita errores si la columna no existe
 
-    # Filtrar el DataFrame para mantener solo los campos deseados
-    df = df[campos_deseados]
-
-    # Convertir el campo "timestamp" a un formato compatible
-    if "timestamp" in df.columns:
-        df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
 
     return df
 
@@ -51,10 +40,10 @@ def exportar_datos(df):
 def ejecutar_script():
     # Leer los datos de MongoDB
     documentos = leer_datos_mongodb()
-
+    print("Se leyeron los datos")
     # Convertir los documentos a una lista de diccionarios
     datos = list(documentos)
-
+    print("Se covertieron los datos a una lista")
     # Procesar y limpiar los datos
     df = procesar_datos(datos)
 
