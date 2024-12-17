@@ -45,4 +45,4 @@ while True:
     print(datos)
     almacenar_datos_mongodb(datos)
     print("Durmindo por 5 minutos...")
-    time.sleep(300) # 12 horas 43200s
+    time.sleep(43200) # 12 horas 43200s

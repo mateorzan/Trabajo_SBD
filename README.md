@@ -139,7 +139,7 @@ docker push miusuario/mi-imagen:latest
 Creamos la instancia en Openstack y nos conectamos a la maquina a traves de ssh
 
 ```bash
-ssh -J usuario_hadoop@hadoop.cesga.es cesgaxuser@ip_máquina_virtual 
+ssh -J usuario_hadoop@hadoop.cesga.es cesgaxuser@10.133.29.50 
 ```
 
 Obtenemos la imagen y ejecutamos a nivel local como hicimos anteriormente a ver si funciona
@@ -152,3 +152,10 @@ docker run -d --name mi_script --network Trabajo_SBD -p 5000:5000 --env MONGO_UR
 ```
 
 ## ➕EXTRA
+
+Se siguio los mismos pasos que para la api anterior, pero en este caso se utilizo la api de la nba para almacenar los partidos que hay cada dia, como esto es algo que tiene poca actualizaciones se ejecutara cada 12h. Ver codigo para entender como funciona.
+
+```
+docker run -d --name mi_script_nba --network Trabajo_SBD -p 5050:5050 --env MONGO_URI=mongodb://m
+ongo:27017 mateorzan/midocker_mateo_nba
+```
