@@ -9,7 +9,7 @@ time.sleep(10)  # Tempo de espera para MongoDB
 
 print("Intentando conectar á base de datos...")
 try:
-    client = pymongo.MongoClient("mongodb://mongodb:27017/", serverSelectionTimeoutMS=5000)
+    client = pymongo.MongoClient("mongodb://mongo:27017/", serverSelectionTimeoutMS=5000)
     client.server_info()  # Forzar conexión para validar
     print("Conexión á base de datos exitosa!")
 except Exception as e:

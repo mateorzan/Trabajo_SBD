@@ -44,9 +44,47 @@ git clone https://github.com/tu_usuario/mateorzan.git
 cd mateorzan
 ```
 
-### 3. Configura y ejecuta Docker
+### 3. Configura y ejecuta Docker a nivel local.
 
+Configuracion
 ```bash
 cd midocker
-docker-compose up --build
+docker build -t mateorzan/midocker_mateo .
 ```
+Crear una network
+```bash
+docker network create Trabajo_SBD
+```
+Ejecucion Mongo
+```bash
+docker run -d --name mongo --network Trabajo_SBD -p 27017:27017 mongo:latest
+```
+
+```bash
+docker run -d --name mi_script --network Trabajo_SBD -p 5000:5000 --env MONGO_URI=mongodb://mongo:27017 mateorzan/midocker_mateo
+```
+
+## Pasos que se siguieron 
+
+### 1.Creamos y clonamos el repositorio de GitHub
+
+### 2.Creamos entorno de ejecucion Trabajo_SBD
+
+### 3.Creamos notebooks previos para probar el funcionamiento del codigo
+
+### 4.Creamos Scripts
+
+### 5.Dockerizamos el script1 
+A traves del archivo Dockerfile
+
+### 6.Probamos funcionamiento a nivel local
+Ejecucion de dockers,mongo y script
+
+### 7.Subimos imagen a DockerHub
+Comandos
+
+### 8.Creamos instancia en Openstack
+
+Creamos la instancia y nos conectamos a la maquina a traves de ssh, 
+obtenemos la imagen y ejecutamos a nivel local como hicimos anteriormente a ver si funciona
+
