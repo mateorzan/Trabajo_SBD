@@ -10,6 +10,9 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 
 ```plaintext
 .
+├── .github/workflows/          # Workflow 
+│   ├── docker-ci-cd.yml        # 
+│
 ├── midocker/                   # Carpeta principal para Docker y procesamiento.
 │   ├── Dockerfile              # Configuración base para la imagen Docker.
 │   ├── datos_exportados.csv    # Datos exportados en formato CSV.
@@ -19,7 +22,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 │   └── script2.py              # Script secundario que carga los datos.
 │
 ├── LICENSE                     # Licencia del proyecto.
-├── notebook1.ipynb             # Notebook 1 
+├── notebook1.ipynb             # Notebook 1  
 └── notebook2.ipynb             # Notebook 2 
 ```
 
