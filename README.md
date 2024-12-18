@@ -11,7 +11,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 ```plaintext
 .
 ├── .github/workflows/          # Workflow 
-│   ├── docker-ci-cd.yml        # 
+│   ├── docker-ci-cd.yml        # Codigo que actualiza la imagen de docker
 │
 ├── midocker/                   # Carpeta principal para Docker y procesamiento.
 │   ├── Dockerfile              # Configuración base para la imagen Docker.
