@@ -151,6 +151,7 @@ Obtenemos la imagen y ejecutamos a nivel local como hicimos anteriormente a ver 
 docker pull mateorzan/midocker_mateo
 docker run -d --name mongo --network Trabajo_SBD -p 27017:27017 mongo:latest
 docker run -d --name mi_script --network Trabajo_SBD -p 5000:5000 --env MONGO_URI=mongodb://mongo:27017 mateorzan/midocker_mateo
+docker run -d --name mi_script_atlas --network Trabajo_SBD -p 5555:5555 mateorzan/midocker_mateo_atlas
 
 ```
 
