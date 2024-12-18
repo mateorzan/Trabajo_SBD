@@ -10,20 +10,36 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 
 ```plaintext
 .
-├── .github/workflows/          # Workflow 
-│   ├── docker-ci-cd.yml        # Codigo que actualiza la imagen de docker
+├── .github/workflows/           # Workflow 
+│   ├── docker-ci-cd.yml         # Codigo que actualiza la imagen de docker
 │
-├── midocker/                   # Carpeta principal para Docker y procesamiento.
-│   ├── Dockerfile              # Configuración base para la imagen Docker.
-│   ├── datos_exportados.csv    # Datos exportados en formato CSV.
-│   ├── datos_exportados.parquet# Datos exportados en formato Parquet.
-│   ├── requirements.txt        # Dependencias de Python.
-│   ├── script1_v3.py           # Script principal que se ejecuta en bucle.
-│   └── script2.py              # Script secundario que carga los datos.
+├── midocker_atlas/              # Carpeta principal para Docker y procesamiento.
+│   ├── Dockerfile               # Configuración base para la imagen Docker.
+│   ├── datos_exportados.csv     # Datos exportados en formato CSV.
+│   ├── datos_exportados.parquet # Datos exportados en formato Parquet.
+│   ├── requirements.txt         # Dependencias de Python.
+│   ├── script_atlas.py          # Script principal que se ejecuta en bucle.
+│   └── script2_atlas.py         # Script secundario que carga los datos.
 │
-├── LICENSE                     # Licencia del proyecto.
-├── notebook1.ipynb             # Notebook 1  
-└── notebook2.ipynb             # Notebook 2 
+├── midocker/                    # Carpeta principal para Docker y procesamiento.
+│   ├── Dockerfile               # Configuración base para la imagen Docker.
+│   ├── datos_exportados.csv     # Datos exportados en formato CSV.
+│   ├── datos_exportados.parquet # Datos exportados en formato Parquet.
+│   ├── requirements.txt         # Dependencias de Python.
+│   ├── script1_v3.py            # Script principal que se ejecuta en bucle.
+│   └── script2.py               # Script secundario que carga los datos.
+│ 
+├── nba/                         # Carpeta principal para Docker y procesamiento.
+│   ├── Dockerfile               # Configuración base para la imagen Docker.
+│   ├── datos_exportados.csv     # Datos exportados en formato CSV.
+│   ├── datos_exportados.parquet # Datos exportados en formato Parquet.
+│   ├── requirements.txt         # Dependencias de Python.
+│   ├── script1_nba.py           # Script principal que se ejecuta en bucle.
+│   └── script2_nba.py           # Script para obtener los datos
+│
+├── LICENSE                      # Licencia del proyecto.
+├── notebook1.ipynb              # Notebook 1  
+└── notebook2.ipynb              # Notebook 2 
 ```
 
 ## 🚀 Instalación y Configuración
@@ -154,6 +170,16 @@ docker run -d --name mi_script --network Trabajo_SBD -p 5000:5000 --env MONGO_UR
 docker run -d --name mi_script_atlas --network Trabajo_SBD -p 5555:5555 mateorzan/midocker_mateo_atlas
 
 ```
+
+## Calculo aproximado de datos
+
+En mi script esta configurado para que se actualice cada 5 minutos y suponiendo que volvemos sobre el 8 de enero:
+
+    Calculo de minutos por dia: 21días×1,440minutos/día=20,160 minutos
+
+    Calculo de documentos: 30,240minutos÷5=6,048 documento en intervalos de 5 minutos
+
+Estos son supuestos y es probable que no este aproximado al resultado final
 
 ## ➕EXTRA
 
