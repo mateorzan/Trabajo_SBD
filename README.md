@@ -9,6 +9,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 ## 📁 Estructura del Proyecto
 
 ```plaintext
+
 .
 ├── .github/workflows/           # Workflow 
 │   ├── docker-ci-cd.yml         # Codigo que actualiza la imagen de docker
@@ -39,6 +40,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 │
 ├── LICENSE                      # Licencia del proyecto.
 ├── notebook1.ipynb              # Notebook 1  
+├── notebook_nba.ipynb              # Notebook nba  
 └── notebook2.ipynb              # Notebook 2 
 ```
 
