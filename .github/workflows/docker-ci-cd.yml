@@ -22,13 +22,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 3. Verifica que el Dockerfile existe
-      - name: Verify Dockerfile exists
-        run: |
-          if [ ! -f docker/Dockerfile ]; then echo "Dockerfile not found!" && exit 1; fi
-
-      # 4. Construye y sube la imagen de Docker
+      # 3. Construye y sube la imagen de Docker
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest -f midocker/Dockerfile midocker/
+          cd midocker
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest
