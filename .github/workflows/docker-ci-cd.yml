@@ -20,18 +20,18 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: mateorzan
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # 3. Construye y etiqueta la imagen de Docker
       - name: Build and tag Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest .
+          docker build -t mateorzan/midocker_mateo:latest .
 
       # 4. Sube la imagen al Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest
+          docker push mateorzan/midocker_mateo:latest
 
   deploy:
     name: Deploy to Server
@@ -47,4 +47,4 @@ jobs:
       # 2. Despliega la nueva imagen en el servidor remoto
       - name: Deploy Docker Image
         run: |
-          ssh -o StrictHostKeyChecking=no user@server_ip "docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest && docker stop my-app || true && docker rm my-app || true && docker run -d --name my-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/my-app:latest"
+          ssh -o StrictHostKeyChecking=no user@server_ip "docker pull mateorzan/midocker_mateo:latest && docker stop my-app || true && docker rm my-app || true && docker run -d --name my-app -p 80:80 mateorzan/midocker_mateo:latest"
