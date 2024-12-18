@@ -171,7 +171,7 @@ docker run -d --name mi_script_atlas --network Trabajo_SBD -p 5555:5555 mateorza
 
 ```
 
-## Calculo aproximado de datos
+## 🧮 Calculo aproximado de datos
 
 En mi script esta configurado para que se actualice cada 5 minutos y suponiendo que volvemos sobre el 8 de enero:
 
