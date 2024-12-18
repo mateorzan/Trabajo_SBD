@@ -30,5 +30,5 @@ jobs:
       # 4. Construye y sube la imagen de Docker
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest -f midocker/Dockerfile docker/
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest -f midocker/Dockerfile midocker/
           docker push ${{ secrets.DOCKER_USERNAME }}/midocker_mateo:latest
