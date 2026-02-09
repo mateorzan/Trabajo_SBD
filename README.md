@@ -51,7 +51,7 @@ Bienvenido al repositorio **Trabajo_SBD**. Este proyecto contiene scripts, confi
 Asegúrate de tener instalados los siguientes elementos en tu sistema:
 
 - **Python 3.8+**
-- **Docker **
+- **Docker**
 - **Jupyter Notebook / Jupyter Lab**
 - **Git**
 
